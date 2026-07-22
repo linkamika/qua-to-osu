@@ -1,5 +1,6 @@
 # -- imports --
 import yaml
+import math
 
 # -- path :3 --
 qua_path = input("Path to .qua file: ")
@@ -16,6 +17,9 @@ creator = input("Creator: ")
 version = input("Difficulty: ")
 source = input("Source: ")
 audio = "audio.mp3"
+
+bpm = input("What is the song BPM?: ")
+bpm_convert = 60000/bpm
 
 # -- placement --
 hit_lines = []
@@ -59,7 +63,7 @@ Source: {source}
 CircleSize: 4
 
 [TimingPoints]
-0,472.4409448818898,4,1,0,100,1,0
+0,{bpm_convert},4,1,0,100,1,0
 
 [HitObjects]
 """
@@ -71,11 +75,4 @@ osu_content += "\n".join(hit_lines)
 with open("converted.osu", "w", encoding="utf-8") as file:
     file.write(osu_content)
 
-print("Done :3 Created converted.osu")
-
-# -- lane assign (fuck english spelling, I hate this language) --
-# x, y, time, type, hitsound, extras
-# x = 64 + ((lane - 1) * 128)   -> Note calculation
-# y = 192                       -> why does osu! do this? idk and I'm too afraid to ask 
-# type = 1                      -> normal
-# type = 128                    -> ln
+print("Done - Created converted.osu")
