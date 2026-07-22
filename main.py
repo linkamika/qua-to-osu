@@ -18,7 +18,7 @@ version = input("Difficulty: ")
 source = input("Source: ")
 audio = "audio.mp3"
 
-bpm = input("What is the song BPM?: ")
+bpm = float(input("What is the song BPM?: "))
 bpm_convert = 60000/bpm
 
 # -- placement --
